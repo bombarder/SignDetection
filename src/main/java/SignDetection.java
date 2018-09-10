@@ -12,6 +12,7 @@ public class SignDetection {
     private int cameraDevice = 0;
     private VideoCapture capture = new VideoCapture(cameraDevice);
     private Mat frame = new Mat();
+    private boolean alreadyPlayed;
 
     SignDetection(List<String> classifiersList) {
         this.classifiersList = classifiersList;
@@ -22,7 +23,7 @@ public class SignDetection {
             for (String classifier : classifiersList) {
                 CascadeClassifier cascadeClassifier = new CascadeClassifier();
                 cascadeClassifier.load(classifier);
-                detect(frame, cascadeClassifier);
+                detect(frame, cascadeClassifier,"sound");
             }
             HighGui.imshow("Road Sign detection", frame);
             if (HighGui.waitKey(10) == 27) {
@@ -31,18 +32,24 @@ public class SignDetection {
         }
     }
 
-    private void detect(Mat frame, CascadeClassifier classifier) {
+    private void detect(Mat frame, CascadeClassifier classifier, String mesasge) {
         Mat frameGray = new Mat();
         Imgproc.cvtColor(frame, frameGray, Imgproc.COLOR_BGR2GRAY);
         Imgproc.equalizeHist(frameGray, frameGray);
+
         MatOfRect matOfRect = new MatOfRect();
         classifier.detectMultiScale(frameGray, matOfRect);
 
         List<Rect> listOfSigns = matOfRect.toList();
+
         for (Rect sign : listOfSigns) {
             Point rightDownAngle = new Point(sign.x + sign.width, sign.y + sign.height);
             Point leftUpAngle = new Point(sign.x, sign.y);
             Imgproc.rectangle(frame, rightDownAngle, leftUpAngle, new Scalar(255, 0, 0), 2);
+            if (!alreadyPlayed){
+                new SoundClip(mesasge);
+                alreadyPlayed = true;
+            }
         }
     }
 }

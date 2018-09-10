@@ -7,6 +7,7 @@
     <groupId>com.bombarder</groupId>
     <artifactId>signRecognition</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <build>
         <plugins>
             <plugin>

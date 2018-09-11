@@ -2,7 +2,9 @@ import org.opencv.core.Core;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     private static final String DIALOG_NAME = "Sign recognition";
@@ -10,18 +12,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         String pedestrianCascade = "C:/Work/projects/signRecognition/src/main/resources/pedestrianSign.xml";
         String stopCascade = "C:/Work/projects/signRecognition/src/main/resources/stopSign.xml";
 //        String stopLight = "C:/Work/projects/signRecognition/src/main/resources/stopLight.xml";
 
-        List<String> availableClassifiers = new ArrayList<String>();
-        availableClassifiers.add(pedestrianCascade);
-        availableClassifiers.add(stopCascade);
-//        availableClassifiers.add(stopLight);
+        Map<String, String> classifiers = new HashMap<String, String>();
+        classifiers.put("pedestrian",pedestrianCascade);
+        classifiers.put("stop",stopCascade);
+//        classifiers.put("stopLight", stopLight);
 
-        while (true){
+        while (true) {
             JPanel panel = new JPanel();
             panel.add(new JLabel("Сделайте Ваш выбор:"));
             int result = JOptionPane.showOptionDialog(null, panel, DIALOG_NAME,
@@ -29,8 +30,7 @@ public class Main {
                     null, NAME_OF_BUTTONS, null);
 
             if (result == JOptionPane.YES_OPTION) {
-                new SignDetection(availableClassifiers).run();
-                break;
+                new SignDetection(classifiers).run();
             } else if (result == JOptionPane.YES_NO_CANCEL_OPTION) {
 
                 JPanel innerPanel = new JPanel();

@@ -6,7 +6,7 @@ class SoundClip extends JFrame {
 
     SoundClip(String message) {
         try {
-            File soundFile = new File("C:/Work/projects/signRecognition/src/main/resources/" + message + ".wav");
+            File soundFile = new File("C:/Users/user/IdeaProjects/SignDetection/src/main/resources/" + message + ".wav");
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioIn);

@@ -1,9 +1,7 @@
 import org.opencv.core.Core;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -13,14 +11,14 @@ public class Main {
     public static void main(String[] args) {
 
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        String pedestrianCascade = "C:/Work/projects/signRecognition/src/main/resources/pedestrianSign.xml";
-        String stopCascade = "C:/Work/projects/signRecognition/src/main/resources/stopSign.xml";
-//        String stopLight = "C:/Work/projects/signRecognition/src/main/resources/stopLight.xml";
+        String pedestrianCascade = "C:/Users/user/IdeaProjects/SignDetection/src/main/resources/pedestrianSign.xml";
+        String stopCascade = "C:/Users/user/IdeaProjects/SignDetection/src/main/resources/stopSign.xml";
+        String stopLight = "C:/Users/user/IdeaProjects/SignDetection/src/main/resources/stopLight.xml";
 
         Map<String, String> classifiers = new HashMap<String, String>();
         classifiers.put("pedestrian",pedestrianCascade);
         classifiers.put("stop",stopCascade);
-//        classifiers.put("stopLight", stopLight);
+        classifiers.put("stopLight", stopLight);
 
         while (true) {
             JPanel panel = new JPanel();
@@ -34,9 +32,9 @@ public class Main {
             } else if (result == JOptionPane.YES_NO_CANCEL_OPTION) {
 
                 JPanel innerPanel = new JPanel();
-                ImageIcon pedestrian = new ImageIcon("C:/Work/projects/signRecognition/src/main/resources/pedestrian.jpeg");
-                ImageIcon stop = new ImageIcon("C:/Work/projects/signRecognition/src/main/resources/stop.jpg");
-                ImageIcon redLight = new ImageIcon("C:/Work/projects/signRecognition/src/main/resources/redLight.jpg");
+                ImageIcon pedestrian = new ImageIcon("C:/Users/user/IdeaProjects/SignDetection/src/main/resources/pedestrian.jpeg");
+                ImageIcon stop = new ImageIcon("C:/Users/user/IdeaProjects/SignDetection/src/main/resources/stop.jpg");
+                ImageIcon redLight = new ImageIcon("C:/Users/user/IdeaProjects/SignDetection/src/main/resources/redLight.jpg");
 
                 JLabel label1 = new JLabel(pedestrian);
                 JLabel label2 = new JLabel(stop);

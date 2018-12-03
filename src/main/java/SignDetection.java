@@ -3,8 +3,6 @@ import org.opencv.highgui.HighGui;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.videoio.VideoCapture;
-
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
